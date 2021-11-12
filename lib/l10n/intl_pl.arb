@@ -1,0 +1,12 @@
+{
+  "weather": "Pogoda",
+  "defaultError": "Ups. Coś poszło nie tak.",
+  "getCurrentWeatherError": "Nie udało się pobrać aktualnej pogody.",
+  "tryAgain": "Spróbuj ponownie",
+  "humidity": "Wilgotność",
+  "visibility": "Widoczność",
+  "pressure": "Ciśnienie",
+  "percentChar": "%",
+  "km": "km",
+  "hPa": "hPa"
+}
