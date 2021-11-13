@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pol_sl_wieloplatformowosc/core/style/dimens.dart';
 import 'package:pol_sl_wieloplatformowosc/features/weather/presentation/blocs/current_weather_bloc.dart';
 import 'package:pol_sl_wieloplatformowosc/features/weather/presentation/widgets/background_image.dart';
+import 'package:pol_sl_wieloplatformowosc/features/weather/presentation/widgets/blur_background_image.dart';
 import 'package:pol_sl_wieloplatformowosc/features/weather/presentation/widgets/city_name_and_temperature.dart';
 import 'package:pol_sl_wieloplatformowosc/features/weather/presentation/widgets/current_weather_listener.dart';
 import 'package:pol_sl_wieloplatformowosc/features/weather/presentation/widgets/weather_description.dart';
@@ -12,7 +13,8 @@ import 'package:pol_sl_wieloplatformowosc/injection_container.dart';
 import 'package:sizer/sizer.dart';
 
 class WeatherPage extends StatefulWidget {
-  const WeatherPage({Key? key}) : super(key: key);
+  const WeatherPage({Key? key, this.cityName}) : super(key: key);
+  final String? cityName;
 
   @override
   _WeatherPageState createState() => _WeatherPageState();
@@ -23,7 +25,8 @@ class _WeatherPageState extends State<WeatherPage> {
 
   @override
   void initState() {
-    _currentWeatherBloc = sl<CurrentWeatherBloc>()..add(LoadCurrentWeatherEvent());
+    _currentWeatherBloc = sl<CurrentWeatherBloc>();
+    _loadWeather();
     super.initState();
   }
 
@@ -33,12 +36,21 @@ class _WeatherPageState extends State<WeatherPage> {
     super.dispose();
   }
 
+  void _loadWeather() {
+    if (widget.cityName != null) {
+      _currentWeatherBloc.add(LoadCurrentWeatherEvent(cityName: widget.cityName!));
+    } else {
+      _currentWeatherBloc.add(LoadTornadoWeatherEvent());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       body: CurrentWeatherListener(
         currentWeatherBloc: _currentWeatherBloc,
+        onRetry: _loadWeather,
         child: BlocBuilder(
           bloc: _currentWeatherBloc,
           builder: (context, state) {
@@ -81,11 +93,11 @@ class _WeatherPageState extends State<WeatherPage> {
                 ],
               );
             } else if (state is CurrentWeatherLoadingState) {
-              return Center(
+              return BlurBackgroundImage(
                 child: CircularProgressIndicator(),
               );
             }
-            return SizedBox();
+            return BlurBackgroundImage();
           },
         ),
       ),

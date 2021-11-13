@@ -28,6 +28,7 @@ class Temperature extends StatelessWidget {
             shadows: [Shadows.textShadow],
           ),
         ),
+        SizedBox(width: 8.0.sp,),
         Stack(
           children: [
             Transform.translate(

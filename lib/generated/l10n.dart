@@ -149,6 +149,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Zmień miasto`
+  String get changeCity {
+    return Intl.message(
+      'Zmień miasto',
+      name: 'changeCity',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

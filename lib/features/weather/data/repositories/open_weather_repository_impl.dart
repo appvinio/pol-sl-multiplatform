@@ -10,9 +10,9 @@ class OpenWeatherRepositoryImpl implements OpenWeatherRepository{
 
   OpenWeatherRepositoryImpl({required this.dataSource});
 
-  Future<Either<Failure, WeatherResponse>> getCurrentWeather() async {
+  Future<Either<Failure, WeatherResponse>> getTornadoWeather(String cityName) async {
     try {
-      final result = await dataSource.getCurrentWeatherData();
+      final result = await dataSource.getCurrentWeatherData(cityName);
       return Right(result);
     } catch (e) {
       return Left(GetCurrentWeatherFailure());

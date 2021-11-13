@@ -8,5 +8,6 @@
   "pressure": "Ciśnienie",
   "percentChar": "%",
   "km": "km",
-  "hPa": "hPa"
+  "hPa": "hPa",
+  "changeCity": "Zmień miasto"
 }

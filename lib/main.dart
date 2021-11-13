@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pol_sl_wieloplatformowosc/features/weather/presentation/pages/weather_page_view.dart';
 import 'package:pol_sl_wieloplatformowosc/injection_container.dart';
-
-import 'features/weather/presentation/pages/weather_page.dart';
 import 'generated/l10n.dart';
 import 'package:sizer/sizer.dart';
 
@@ -12,12 +11,12 @@ void main() async {
   await InjectionContainer().init();
   runApp(MyApp());
 }
-
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Sizer(builder: (context, orientation, deviceType) {
       return MaterialApp(
+        color: Colors.white,
         localizationsDelegates: [
           S.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -32,7 +31,7 @@ class MyApp extends StatelessWidget {
             Theme.of(context).textTheme,
           ),
         ),
-        home: WeatherPage(),
+        home: WeatherPagesView(),
       );
     });
   }

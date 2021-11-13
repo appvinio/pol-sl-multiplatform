@@ -21,6 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "changeCity": MessageLookupByLibrary.simpleMessage("Zmień miasto"),
         "defaultError":
             MessageLookupByLibrary.simpleMessage("Ups. Coś poszło nie tak."),
         "getCurrentWeatherError": MessageLookupByLibrary.simpleMessage(

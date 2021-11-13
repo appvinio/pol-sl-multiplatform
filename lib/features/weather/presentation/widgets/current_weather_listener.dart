@@ -8,9 +8,11 @@ class CurrentWeatherListener extends StatelessWidget {
     Key? key,
     this.child,
     required this.currentWeatherBloc,
+    this.onRetry,
   }) : super(key: key);
   final CurrentWeatherBloc currentWeatherBloc;
   final Widget? child;
+  final Function()? onRetry;
 
   @override
   Widget build(BuildContext context) {
@@ -27,12 +29,20 @@ class CurrentWeatherListener extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     Navigator.of(context).pop();
-                    currentWeatherBloc.add(LoadCurrentWeatherEvent());
+                  },
+                  child: Text(
+                    S.of(context).changeCity,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    onRetry?.call();
                   },
                   child: Text(
                     S.of(context).tryAgain,
                   ),
-                )
+                ),
               ],
             ),
           );

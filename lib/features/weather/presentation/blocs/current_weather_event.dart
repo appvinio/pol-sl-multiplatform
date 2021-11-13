@@ -5,4 +5,9 @@ abstract class CurrentWeatherEvent extends Equatable {
   @override
   List<Object?> get props => [];
 }
-class LoadCurrentWeatherEvent extends CurrentWeatherEvent{}
+class LoadCurrentWeatherEvent extends CurrentWeatherEvent{
+  final String cityName;
+
+  LoadCurrentWeatherEvent({required this.cityName});
+}
+class LoadTornadoWeatherEvent extends CurrentWeatherEvent{}
