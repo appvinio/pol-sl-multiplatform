@@ -69,12 +69,19 @@ class _WeatherPageState extends State<WeatherPage> {
                           degrees: state.weatherResponse.main.temp.round(),
                         ),
                       )),
-                  Positioned(
-                    right: Dimens.mainHorizontalPaddingPercent.w,
-                    top: Dimens.mainHorizontalPaddingPercent.h,
-                    child: SafeArea(
-                      child: WeatherDescription(
-                        description: state.weatherResponse.weather.first.description,
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Container(
+                      height: 100.h,
+                      padding: EdgeInsets.only(
+                        right: Dimens.mainHorizontalPaddingPercent.w,
+                        top: Dimens.mainHorizontalPaddingPercent.h,
+                        bottom: Dimens.mainHorizontalPaddingPercent.h
+                      ),
+                      child: SafeArea(
+                        child: WeatherDescription(
+                          description: state.weatherResponse.weather.first.description,
+                        ),
                       ),
                     ),
                   ),
